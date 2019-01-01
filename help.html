@@ -1,0 +1,200 @@
+<div class="col-md-10 col-sm-12 col-xs-12">
+
+    <p align="center">
+        <a href="http://www.codetally.com" target="_blank">
+            <img src="codetally_help_logo_ns.png" width="72">
+        </a>
+
+    </p><h3 align="center" id="colorstrap">Codetally</h3>
+
+    <p align="center">
+        Tally up code costs automatically.
+        <br>
+        <a href="http://www.codetally.com" target="_blank"><strong>Visit Codetally &#xBB;</strong></a>
+    </p>
+    <p></p>
+
+    <p><br></p>
+
+    <a class="anchor" id="quick-start"></a>
+    <h2 >Quick start</h2>
+    <p>Several quick start options are available:</p>
+    <ul>
+        <li>Download an example <a href="http://www.codetally.com/codetally.json">Charge</a> and <a href="http://www.codetally.com/timelog.json">Timelog</a> file and add them to your Github repo.</li>
+        <li>Clone the Codetally example repo: <code>git clone https://github.com/Codetally/codetally_example.git</code></li>
+    </ul>
+    <p>In either case above, you will need to <a href="#help#installation">install the Codetally application</a> within your Github repo.</p>
+
+    <a class="anchor" id="charges"></a>
+    <h2 >Charges</h2>
+    <p>A charge is a cost for a defined unit of work. Here is an example of a <code>codetally.json</code> file containing a charge:</p>
+
+    <pre class="highlight">{
+  "currency":"cad",
+  "charges": [
+    {
+      "event":"commit",
+      "action":"added",
+      "chargetype":"author",
+      "chargeref":"someone@github.org",
+      "description":"Author specific charge for Greg when he adds something in a commit.",
+      "calculationtype":"normal",
+      "chargeamount":"45.23"
+    }
+  ]
+}
+</pre>
+
+    <p>An individual charge contains the following properties:</p>
+    <ul>
+        <li><b>Event:</b> An event represents a change to the repo. Currently, Codetally only supports <code>commit</code> events.</li>
+        <li><b>Action:</b> Within the context of an event, an action specifies the change on a more granular level. Codetally supports the following actions:
+            <ul>
+                <li><b>added</b> - content was added in a commit to the repo.</li>
+                <li><b>modified</b> - content was modified in a commit to the repo.</li>
+                <li><b>removed</b> - content was removed in a commit to the repo.</li>
+            </ul>
+        </li>
+        <li><b>Chargetype:</b> Charges are conditionally applied to different phases of the calculation process depending on the chargetype. Codetally currently supports the following chargetypes:
+            <ul>
+                <li><b>author</b> - each commit file is individually calculated based on the author.</li>
+                <li><b>tax</b> - a calculated amount added to the overall total after the other chargetypes are processed.</li>
+            </ul>
+        </li>
+        <li><b>Chargeref:</b> An additional reference value to be used in conjunction with the <code>chargetype</code> property.
+            <ul>
+                <li><b>For a chargetype of author</b> - the <code>chargeref</code> should be the author's email address used to identify the author in a commit.</li>
+                <li><b>For a chargetype of tax</b> - the <code>chargeref</code> should be one of:
+                    <ul>
+                        <li><code>percent</code> - a percentage of the subtotal will be calculated and added to the overall total cost.</li>
+                        <li><code>flat</code> - a flat amount will be directly added to the subtotal and the sum will be the overall total cost.</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <p>Charges defined in a <code>codetally.json</code> file are an array, so you may configure as many charges as your repo requires.</p>
+
+    <a class="anchor" id="timelogs"></a>
+    <h2 >Time Logs</h2>
+    <p>A time log is a file a software developer uses to specify the amount of time taken to complete the work in a commit. The information is recorded in a <code>timelog.json</code> file stored at the root of the repo. Here is an example of a <code>timelog.json</code> file: </p>
+      <pre class="highlight">{
+   "hours":"1.25",
+   "minutes":"15",
+   "seconds":"00"
+}</pre>
+
+    <a class="anchor" id="installation"></a>
+    <h2 >Installation</h2>
+    <p>Installation of Codetally is a simple, 2 step process - and you can do these steps in any order:</p>
+    <ul>
+        <li>Create a <code>codetally.json</code> file and commit it to the root of your github repo.</li>
+        <li>Go to the <a href="https://github.com/works-with?utf8=%E2%9C%93&query=codetally">Works With Github page</a> and add the Codetally application to your repo.</li>
+    </ul>
+
+    <a class="anchor" id="shield"></a>
+    <h2 >Shield</h2>
+    <p>After you have installed Codetally and made a few commits, you may choose to add your Codetally shield to places like your Github readme file. Your Codetally shield will be accessible through the URL http://www.codetally.com/shield/<code>username</code>/<code>reponame</code></p>
+    <div class="alert alert-info" role="alert"> <strong>Hacker Alert!</strong> Our servers will cache your image unless you append a random value to the end of your shield URL. So, to beat the system, add a random number like this: http://www.codetally.com/shield/<code>username</code>/<code>reponame</code><strong>?1501195872560</strong></div>
+
+    <a class="anchor" id="logging"></a>
+    <h2 >Logging</h2>
+    <p>Each step in the calculation process is logged on Codetally.com. To view the log of your most recent calculation, go to <a href="http://www.codetally.com">Codetally.com</a>. Your log will resemble this example: </p>
+    <pre class="highlight">
+        [
+  {
+    "level": "INFO",
+    "message": "The currency found was: cad",
+    "timestamp": "Sat, 22-Jul-2017 01:32:23 GMT"
+  },
+  {
+    "level": "INFO",
+    "message": "The currency symbol found was: CAD",
+    "timestamp": "Sat, 22-Jul-2017 01:32:23 GMT"
+  },
+  {
+    "level": "INFO",
+    "message": "Processing a commit for author: triggerman@bitbucket.org",
+    "timestamp": "Sat, 22-Jul-2017 01:32:23 GMT"
+  },
+  {
+    "level": "INFO",
+    "message": "The timestamp for commit 3459a8f829f31109873aa8a03b3564968c7a5289 is 2017-07-21T21:32:00-04:00",
+    "timestamp": "Sat, 22-Jul-2017 01:32:23 GMT"
+  },
+  {
+    "level": "INFO",
+    "message": "Commit type is CHARGE",
+    "timestamp": "Sat, 22-Jul-2017 01:32:23 GMT"
+  },
+  {
+    "level": "INFO",
+    "message": "A modified record was found for 04-2-Methods/src/java9/Turtle.java",
+    "timestamp": "Sat, 22-Jul-2017 01:32:23 GMT"
+  },
+  {
+    "level": "INFO",
+    "message": "The total amount is 23.16",
+    "timestamp": "Sat, 22-Jul-2017 01:32:23 GMT"
+  },
+  {
+    "level": "INFO",
+    "message": "The current repo cost is 1326.86",
+    "timestamp": "Sat, 22-Jul-2017 01:32:23 GMT"
+  }
+]
+    </pre>
+
+    <a class="anchor" id="history"></a>
+    <h2 >History</h2>
+    <p>Codetally maintains a history of your prior tally calculations. History records are read only and are available as a record of past activity.</p>
+
+
+    <a class="anchor" id="bugs-and-feature-requests"></a>
+    <h2>Bugs and feature requests</h2>
+    <p>Have a bug or a feature request? Please <a href="https://github.com/Codetally/codetally_core/issues?utf8=%E2%9C%93&amp;q=is%3Aissue%20is%3Aopen%20" target="_blank">search</a> for existing and closed issues. If your problem or idea is not addressed yet, <a href="https://github.com/Codetally/codetally_core/issues/new" target="_blank">please open a new issue</a>.</p>
+
+    <a class="anchor" id="community"></a>
+    <h2 >Community</h2>
+    <p>Get updates on Codetally&apos;s development and chat with the project maintainers and community members.</p>
+    <ul>
+        <li>Implementation help may be found at Stack Overflow (tagged <a href="https://stackoverflow.com/questions/tagged/codetally" target="_blank"><code>codetally</code></a>).</li>
+    </ul>
+    <a class="anchor" id="creators"></a>
+    <h2>Creators</h2>
+    <p><strong>Triggerman722</strong></p>
+    <ul>
+        <li><a href="https://github.com/triggerman722" target="_blank">https://github.com/triggerman722</a></li>
+    </ul>
+    <a class="anchor" id="copyright-and-license"></a>
+    <h2>Copyright and license</h2>
+    <p>Code and documentation copyright 2017 the <a href="https://github.com/Codetally/codetally_example/graphs/contributors" target="_blank">Codetally Authors</a>. Any code is released under the <a href="https://github.com/Codetally/codetally_example/blob/master/LICENSE" target="_blank">MIT License</a></p>
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+
+</div>
+<div class="col-md-2 hidden-sm hidden-xs">
+    <ul class="fixedplace">
+        <li class="toc"><i class="glyphicon glyphicon-book"></i> TABLE OF CONTENTS</li>
+        <li><a href="#/help#quick-start">Quick start</a></li>
+        <li><a href="#/help#charges">Charges</a></li>
+        <li><a href="#/help#timelogs">Time logs</a></li>
+        <li><a href="#/help#installation">Installation</a></li>
+        <li><a href="#/help#shield">Shield</a></li>
+        <li><a href="#/help#logging">Logging</a></li>
+        <li><a href="#/help#history">History</a></li>
+        <li><a href="#/help#bugs-and-feature-requests">Bugs and feature requests</a></li>
+        <li><a href="#/help#community">Community</a></li>
+        <li><a href="#/help#creators">Creators</a></li>
+        <li><a href="#/help#copyright-and-license">Copyright and license</a></li>
+        <li><a href="#/help"><small>Back to top</small></a></li>
+    </ul>
+</div>
+
+
