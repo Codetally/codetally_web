@@ -47,6 +47,7 @@ CodetallyApp.config(['$routeProvider', function($routeProvider) {
 		.when('/:owner/:reponame/history', {templateUrl: 'list_history.html', controller:'MainCtrl'})
 		.when('/:owner/:reponame/log', {templateUrl: 'list_log.html', controller:'MainCtrl'})
 
+		.when('/:owner/:reponame/charges/add', {templateUrl: 'add_charge.html', controller:'MainCtrl'})
 		.when('/:owner/:reponame/charges/:chargeid', {templateUrl: 'edit_charge.html', controller:'MainCtrl'})
 		.when('/:owner/:reponame/charges', {templateUrl: 'list_charges.html', controller:'MainCtrl'})
 

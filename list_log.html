@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-lg-8">
-		<h1>Latest Log ({{actiondata.length}})</h1>	
+		<h1>Calculation Log ({{actiondata.length}})</h1>	
 	</div>
 	<div class="col-lg-4">
 		<div class="input-group h1">
@@ -10,18 +10,15 @@
 	</div>
 </div>
 <hr/>
-<div ng-repeat="integration in actiondata | filter:searchText" class="list-group">			
+<div ng-repeat="log in actiondata | filter:searchText" class="list-group">			
 	<div class="media">
 		<div class="media-left">
-			<a href="#/{{username}}/{{repo}}/integrations/{{$index}}"><i class="fa fa-gavel" style="font-size:48px;color:green"></i></a>
+			<i class="fa fa-file-text" style="color:green"></i>
 		</div>
 		<div class="media-body">
 			<div class="col-md-10">
-				<span>{{integration.level}}</span>
-				<a href="#/{{username}}/{{repo}}/integrations/{{$index}}" ><h4 class="media-heading">{{integration.message}}</h4></a>
+				<span>{{log.level}} - {{log.message}}</span>
 			</div>
-			<div class="col-md-2 text-right">
-			</div>			
 		</div>
 	</div>
 	<hr/>

@@ -1,6 +1,9 @@
 <div class="row">
-	<div class="col-lg-8">
+	<div class="col-lg-4">
 		<h1>Charges ({{actiondata.length}})</h1>	
+	</div>
+	<div class="col-lg-4">
+		<a href="/#/{{owner}}/{{reponame}}/charges/add" class="btn btn-success h1 pull-right">Add</a>
 	</div>
 	<div class="col-lg-4">
 		<div class="input-group h1">
@@ -13,7 +16,7 @@
 <div ng-repeat="charge in actiondata | filter:searchText" class="list-group">			
 	<div class="media">
 		<div class="media-left">
-			<a href="#/{{username}}/{{repo}}/charges/{{charge.id}}"><i class="fa fa-tags" style="color:green"></i></a>
+			<a href="#/{{owner}}/{{reponame}}/charges/{{charge.id}}"><i class="fa fa-tags" style="color:green"></i></a>
 		</div>
 		<div class="media-body">
 			<div class="col-md-2">
