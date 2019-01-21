@@ -39,6 +39,7 @@ CodetallyApp.controller('MainCtrl', function($scope, $routeParams, $location, Da
 });
 CodetallyApp.config(['$routeProvider', function($routeProvider) {
 	$routeProvider
+		.when('/:owner/:reponame/webhooks/add', {templateUrl: 'add_webhook.html', controller:'MainCtrl'})
 		.when('/:owner/:reponame/webhooks/:webhookid/edit', {templateUrl: 'edit_webhook.html', controller:'MainCtrl'})
 		.when('/:owner/:reponame/webhooks/:webhookid/deliveries', {templateUrl: 'list_webhookdeliveries.html', controller:'MainCtrl'})
 		.when('/:owner/:reponame/webhooks/:webhookid', {templateUrl: 'edit_webhook.html', controller:'MainCtrl'})
@@ -53,8 +54,10 @@ CodetallyApp.config(['$routeProvider', function($routeProvider) {
 
 		.when('/:owner/repositories', {templateUrl: 'list_repositories.html', controller:'MainCtrl'})
 
+		.when('/:owner/:reponame/integrations/add', {templateUrl: 'add_integration.html', controller:'MainCtrl'})
 		.when('/:owner/:reponame/integrations', {templateUrl: 'list_integrations.html', controller:'MainCtrl'})
 
+		.when('/:owner/:reponame/notifications/add', {templateUrl: 'add_notification.html', controller:'MainCtrl'})
 		.when('/:owner/:reponame/notifications', {templateUrl: 'list_notifications.html', controller:'MainCtrl'})
 
 		.when('/:owner/:reponame/:action', {templateUrl: 'about.html', controller:'MainCtrl'})

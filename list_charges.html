@@ -14,32 +14,36 @@
 </div>
 <hr/>
 <div ng-repeat="charge in actiondata | filter:searchText" class="list-group">			
-	<div class="media">
-		<div class="media-left">
+	<div class="col-md-12">
+		<div class="col-md-1">
 			<a href="#/{{owner}}/{{reponame}}/charges/{{charge.id}}"><i class="fa fa-tags" style="color:green"></i></a>
 		</div>
-		<div class="media-body">
-			<div class="col-md-2">
-				<span>{{charge.action}}</span>
-			</div>
-			<div class="col-md-2">
-				<span>{{charge.description}}</span>
-			</div>
-			<div class="col-md-2">
-				<span>{{charge.calculationtype}}</span>
-			</div>			
-                        <div class="col-md-2">
-                                <span>{{charge.chargetype}}</span>
-                        </div>
-                        <div class="col-md-2">
-                                <span>{{charge.event}}</span>
-                        </div>
-                        <div class="col-md-2">
-                                <span>{{charge.chargeamount}}</span>
-                        </div>
+		<div class="col-md-1">
+			<span>{{charge.action}}</span>
 		</div>
+		<div class="col-md-2">
+			<span>{{charge.description}}</span>
+		</div>
+		<div class="col-md-1">
+			<span>{{charge.calculationtype}}</span>
+		</div>			
+                <div class="col-md-1">
+                        <span>{{charge.chargetype}}</span>
+                </div>
+                <div class="col-md-1">
+                        <span>{{charge.event}}</span>
+                </div>
+                <div class="col-md-1">
+                        <span>{{charge.chargeamount}}</span>
+                </div>
+		<div class="col-md-4">
+			<div class="btn-group btn-group-xs" role="group" aria-label="...">
+				<a href="#" class="btn btn-info">Edit</a><a href="#" class="btn btn-danger">Delete</a>
+			</div>
+		</div>
+		<hr />
+		<br /><br />
 	</div>
-	<hr/>
 </div>
 
 	
