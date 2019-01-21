@@ -1,0 +1,22 @@
+<div class="row">
+        <div class="col-lg-8">
+                <div class="h1">Repositories  ({{actiondata.length}})</div>
+        </div>
+
+        <div class="col-lg-4">
+                <div class="input-group h1">
+                        <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-search"></i></span>
+                        <input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon2" ng-model="searchText">
+                </div>
+        </div>
+</div>
+<hr/>
+<div ng-repeat="item in actiondata | filter:searchText" class="list-group panel panel-default" style="border-left:15px solid #216C2A"">
+	<div class="panel-body">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6"><i class="fa fa-book text-muted"></i> <a href="#/{{item.url}}">{{item.name}}</a></div>
+                    </div>
+                </div>
+        </div>
+</div>

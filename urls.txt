@@ -1,0 +1,30 @@
+https://www.codetally.com/#/triggerman722/
+-- this lists the repositories of the owner.
+
+https://www.codetally.com/#/triggerman722/collabiture/
+-- this lists the current value of the project.
+
+https://www.codetally.com/#/triggerman722/collabiture/history
+--list_history.html prototype
+
+https://www.codetally.com/#/triggerman722/collabiture/log
+--list_log.html prototype
+
+https://www.codetally.com/#/triggerman722/collabiture/settings
+https://www.codetally.com/#/triggerman722/collabiture/settings/webhooks
+https://www.codetally.com/#/triggerman722/collabiture/settings/webhooks/4564
+https://www.codetally.com/#/triggerman722/collabiture/settings/webhooks/4564/edit
+https://www.codetally.com/#/triggerman722/collabiture/settings/webhooks/4564/deliveries
+
+https://www.codetally.com/#/triggerman722/collabiture/charges
+--list_charges.html prototype
+
+https://www.codetally.com/#/triggerman722/collabiture/charges/5566
+https://www.codetally.com/#/triggerman722/collabiture/charges/5566/edit
+
+https://www.codetally.com/#/triggerman722/collabiture/settings/integrations
+
+https://www.codetally.com/#/triggerman722/collabiture/settings/notifications
+
+
+

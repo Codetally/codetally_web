@@ -1,14 +1,9 @@
 
-<h1>{{username}} | {{repo}} <img ng-src="{{current_shield_src}}"></h1>
+<h1>{{owner}} | {{reponame}} <img ng-src="{{current_shield_src}}"></h1>
 <p>{{item.description}}</p>
 <hr>
 
-<ul class="nav nav-tabs">
-    <li role="presentation" ng-class="{active: action=='log' || action ==null || action == 'config'}"><a href="#/{{username}}/{{repo}}/">Current</a></li>
-    <li role="presentation" ng-class="{active: action=='history'}"><a href="#/{{username}}/{{repo}}/history">History</a></li>
-</ul>
-<br >
-<div class="panel panel-default" style="border-left:15px solid #216C2A" ng-hide="action=='history'">
+<div class="panel panel-default" style="border-left:15px solid #216C2A">
     <div class="panel-body">
         <div class="col-md-9">
             <div class="row">
@@ -36,27 +31,5 @@
             </div>
         </div>
     </div>
-</div>
-
-<ul class="nav nav-tabs" ng-hide="action=='history'">
-    <li role="presentation" ng-class="{active: action=='log' || action==null }"><a href="#/{{username}}/{{repo}}/log">Calculation Log</a></li>
-    <li role="presentation" ng-class="{active: action=='config'}"><a href="#/{{username}}/{{repo}}/config">Config</a></li>
-    <li role="presentation" ng-class="{active: action=='integrations'}"><a href="#/{{username}}/{{repo}}/integrations">Integrations</a></li>
-
-</ul>
-
-<div ng-switch="action">
-    <div ng-switch-when="undefined"><div ng-include="'log.html'"></div>
-    </div>
-    <div ng-switch-when="log"><div ng-include="'log.html'"></div>
-    </div>
-    <div ng-switch-when="config"><div ng-include="'config.html'"></div>
-    </div>
-    <div ng-switch-when="history"><div ng-include="'history.html'"></div>
-    </div>
-    <div ng-switch-when="integrations"><div ng-include="'integrations.html'"></div>
-    </div>
-
-
 </div>
 

@@ -1,0 +1,11 @@
+[
+    {
+      "AppName": "wakatime",
+      "client_id": "JajUYSst18OQj84xq58tSoou",
+      "client_secret": "sec_51YsqbnZf5ActKBRjMM4fvDI7Er9GVIYJ7iUvBfWGqaIjQ7qvm1hdrpkV3WJtryUQ1rrEG9Y8r2K2sjc",
+      "grant_type": "refresh_token",
+      "redirect_uri": "https://www.codetally.com/callback",
+      "refresh_token": "ref_JlrJmEuvrJCfNvUW2V9BWe8YrY4upvsEk75RgevsmsuLTIQ6Og8x9EK1dTp91qn6fepQAvbjnLbPDPMa",
+      "token": "sec_e5M8HTKSKPpUEvmPVVIiieoD5wRfYJrc4yPhg2K0ZKEQIYBznFcg3SuuE7OenZDQZHVL0SyzBMtq8OCt"
+    }
+]

@@ -1,0 +1,42 @@
+<div class="row">
+	<div class="col-lg-8">
+		<h1>Charges ({{actiondata.length}})</h1>	
+	</div>
+	<div class="col-lg-4">
+		<div class="input-group h1">
+			<span class="input-group-addon" id="sizing-addon2"><i class="fa fa-search"></i></span>
+			<input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon2" ng-model="searchText">
+		</div>
+	</div>
+</div>
+<hr/>
+<div ng-repeat="charge in actiondata | filter:searchText" class="list-group">			
+	<div class="media">
+		<div class="media-left">
+			<a href="#/{{username}}/{{repo}}/charges/{{charge.id}}"><i class="fa fa-tags" style="color:green"></i></a>
+		</div>
+		<div class="media-body">
+			<div class="col-md-2">
+				<span>{{charge.action}}</span>
+			</div>
+			<div class="col-md-2">
+				<span>{{charge.description}}</span>
+			</div>
+			<div class="col-md-2">
+				<span>{{charge.calculationtype}}</span>
+			</div>			
+                        <div class="col-md-2">
+                                <span>{{charge.chargetype}}</span>
+                        </div>
+                        <div class="col-md-2">
+                                <span>{{charge.event}}</span>
+                        </div>
+                        <div class="col-md-2">
+                                <span>{{charge.chargeamount}}</span>
+                        </div>
+		</div>
+	</div>
+	<hr/>
+</div>
+
+	

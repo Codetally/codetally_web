@@ -1,0 +1,30 @@
+<div class="row">
+	<div class="col-lg-8">
+		<h1>Latest Log ({{actiondata.length}})</h1>	
+	</div>
+	<div class="col-lg-4">
+		<div class="input-group h1">
+			<span class="input-group-addon" id="sizing-addon2"><i class="fa fa-search"></i></span>
+			<input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon2" ng-model="searchText">
+		</div>
+	</div>
+</div>
+<hr/>
+<div ng-repeat="integration in actiondata | filter:searchText" class="list-group">			
+	<div class="media">
+		<div class="media-left">
+			<a href="#/{{username}}/{{repo}}/integrations/{{$index}}"><i class="fa fa-gavel" style="font-size:48px;color:green"></i></a>
+		</div>
+		<div class="media-body">
+			<div class="col-md-10">
+				<span>{{integration.level}}</span>
+				<a href="#/{{username}}/{{repo}}/integrations/{{$index}}" ><h4 class="media-heading">{{integration.message}}</h4></a>
+			</div>
+			<div class="col-md-2 text-right">
+			</div>			
+		</div>
+	</div>
+	<hr/>
+</div>
+
+	

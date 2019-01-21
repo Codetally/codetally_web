@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en" ng-app="DemoApp" ng-controller="DemoCtrl">
+<html lang="en" ng-app="CodetallyApp" ng-controller="MainCtrl">
 <head>
 	<meta charset="utf-8">
 	<title>Codetally.com | Code, Costing, Financial Calculations - Count the Cost of Every Code Commit!</title>
@@ -43,13 +43,27 @@
 
 <div ng-class="authenticated ? 'container-fluid' : 'container'">
 	<div class="row">
-		<div ng-show="authenticated" class="col-sm-3 col-md-2 sidebar" ng-controller="DemoCtrl">
+		<div ng-show="authenticated" class="col-sm-3 col-md-2 sidebar" ng-controller="MainCtrl">
 			<ul class="nav nav-sidebar list-group" ng-repeat="repo in repositories" class="list-group">
 				<li ng-class="{active:isActive(repo.url)}">
 					<a href="#{{repo.url}}"><i class="fa fa-github-square"></i> {{repo.name}}</a>
 					<a href="https://wakatime.com/oauth/authorize?client_id=JajUYSst18OQj84xq58tSoou&response_type=code&redirect_uri=https://www.codetally.com/callback&scope=read_logged_time&state={{repo.name}}"><i class="fa fa-cog"></i></a>
 				</li>
 			</ul>
+ <ul class="nav nav-sidebar list-group" style="padding-left:25px" ng-show="reponame !==undefined">
+        <li><a href="#/{{owner}}/{{reponame}}/"><i class="fa fa-home" style="padding-right:15px"></i> Home</a></li>
+        <li><a href="#/{{owner}}/{{reponame}}/history"><i class="fa fa-history"  style="padding-right:15px"></i> History</a></li>
+        <li><a href="#/{{owner}}/{{reponame}}/log"><i class="fa fa-file-text"  style="padding-right:15px"></i> Calculation Log</a></li>
+        <li><a href="#/{{owner}}/{{reponame}}/charges"><i class="fa fa-tags" style="padding-right:15px"></i> Charges</a></li>
+        <li><a href="#/{{owner}}/{{reponame}}/webhooks"><i class="fa fa-share-alt"  style="padding-right:15px"></i> Webhooks</a></li>
+        <li><a href="#/{{owner}}/{{reponame}}/integrations"><i class="fa fa-puzzle-piece" style="padding-right:15px"></i> Integrations</a></li>
+        <li><a href="#/{{owner}}/{{reponame}}/notifications"><i class="fa fa-paper-plane" style="padding-right:15px"></i> Notifications</a></li>
+        <li><a href="#/{{owner}}/repositories/"><i class="fa fa-book" style="padding-right:15px"></i> All Repositories</a></li>
+</ul>
+ <ul class="nav nav-sidebar list-group" style="padding-left:25px" ng-show="reponame ===undefined">
+        <li><i class="fa fa-book" style="padding-right:15px"></i> Repositories</li>
+</ul>
+
 		</div>
 		<div ng-class="{'col-md-10': authenticated , 'col-md-offset-2': authenticated, 'col-md-12': !authenticated, 'main':true}" ng-view>
 

@@ -1,0 +1,45 @@
+[
+    {
+      "calculationtype": "normal",
+      "action": "removed",
+      "description": "22Author specific charge for Greg when he removes something in a commit",
+      "chargetype": "author",
+      "event": "commit",
+      "chargeamount": "15.45",
+      "chargeref": "gemartin@gmail.com"
+    },
+    {
+      "calculationtype": "normal",
+      "action": "added",
+      "description": "Author specific charge for Greg when he adds something in a commit.",
+      "chargetype": "author",
+      "event": "commit",
+      "chargeamount": "11.13",
+      "chargeref": "gemartin@gmail.com"
+    },
+    {
+      "calculationtype": "normal",
+      "action": "modified",
+      "description": "Author specific charge for Preg when he removes something in a commit",
+      "chargetype": "author",
+      "event": "commit",
+      "chargeamount": "21.42",
+      "chargeref": "gemartin@gmail.com"
+    },
+    {
+      "action": "any",
+      "description": "HST",
+      "calculationtype": "percent",
+      "chargetype": "tax",
+      "event": "commit",
+      "chargeamount": "13.20"
+    },
+    {
+      "action": "any",
+      "description": "FARF",
+      "calculationtype": "percent",
+      "chargetype": "tax",
+      "event": "commit",
+      "chargeamount": "1.09"
+    }
+  ]

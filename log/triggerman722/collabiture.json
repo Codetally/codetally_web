@@ -1,0 +1,57 @@
+[
+  {
+    "message": "The currency found was: cad",
+    "level": "INFO",
+    "timestamp": "Thu, 20 Dec 2018 00:25:45 GMT"
+  },
+  {
+    "message": "The currency symbol found was: $",
+    "level": "INFO",
+    "timestamp": "Thu, 20 Dec 2018 00:25:45 GMT"
+  },
+  {
+    "message": "Processing a commit for author: gemartin@gmail.com repo id = collabiture",
+    "level": "INFO",
+    "timestamp": "Thu, 20 Dec 2018 00:25:45 GMT"
+  },
+  {
+    "message": "The timestamp for commit c1ffe8cda217b13132c506e78ffbb1273af19968 is 2018-12-19T19:25:41-05:00",
+    "level": "INFO",
+    "timestamp": "Thu, 20 Dec 2018 00:25:45 GMT"
+  },
+  {
+    "message": "Commit type is CHARGE",
+    "level": "INFO",
+    "timestamp": "Thu, 20 Dec 2018 00:25:45 GMT"
+  },
+  {
+    "message": "A modified record was found for login.php with unit charge of $21.42 and subtotal of $21.42",
+    "level": "INFO",
+    "timestamp": 1545265545855
+  },
+  {
+    "message": "Looking up tax charges.",
+    "level": "INFO",
+    "timestamp": 1545265545855
+  },
+  {
+    "message": "Found tax charge HST of type percent and amount 13.20 with unit cost of $2.83 producing subtotal $24.25",
+    "level": "INFO",
+    "timestamp": 1545265545855
+  },
+  {
+    "message": "Found tax charge FARF of type percent and amount 1.09 with unit cost of $0.26 producing subtotal $24.51",
+    "level": "INFO",
+    "timestamp": 1545265545855
+  },
+  {
+    "message": "Found 2 tax charges.",
+    "level": "INFO",
+    "timestamp": 1545265545855
+  },
+  {
+    "message": "The total amount is: $24.51",
+    "level": "INFO",
+    "timestamp": "Thu, 20 Dec 2018 00:25:45 GMT"
+  }
+]

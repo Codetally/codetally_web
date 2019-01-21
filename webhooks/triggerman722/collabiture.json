@@ -1,0 +1,12 @@
+[
+    {
+      "events": {
+        "failure": false,
+        "started": false,
+        "success": true
+      },
+      "host": "calm-skunk-64.localtunnel.me",
+      "path": "/codetally/hook",
+      "token": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+    }
+  ]

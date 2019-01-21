@@ -1,0 +1,13 @@
+[
+    {
+      "recipient": "gemartin@gmail.com",
+      "recipient_type": "email",
+	"frequency": "daily"
+    },
+    {
+      "recipient": "5198543190",
+      "recipient_type": "smstextmessage",
+        "frequency": "daily"
+    }
+
+]

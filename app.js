@@ -1,10 +1,10 @@
 
-var DemoApp = angular.module('DemoApp', [
+var CodetallyApp = angular.module('CodetallyApp', [
 	'ngResource',
 	'ngRoute'
 ]);
-DemoApp.factory('DataResource', function($resource) {
-	return $resource('/:datatype/:id/:file', {}, {
+CodetallyApp.factory('DataResource', function($resource) {
+	return $resource('/:datatype/:owner/:reponame'+'.json', {}, {
 		query: {method: 'GET', isArray: true},
 		get: {method: 'GET'},
 		remove: {method: 'DELETE'},
@@ -12,84 +12,55 @@ DemoApp.factory('DataResource', function($resource) {
 		set: {method: 'POST'}
 	});
 });
-DemoApp.controller('DemoCtrl', function($scope, $routeParams, $location, DataResource, $route, $rootScope, $interval) {
+CodetallyApp.controller('MainCtrl', function($scope, $routeParams, $location, DataResource, $route, $rootScope, $interval) {
 
 	if (!$rootScope.authenticated) {
 		DataResource.get({datatype:"me"}, function(data) {
 			$rootScope.userdata = data;
 			$rootScope.authenticated = true;
-			DataResource.query({datatype:"repos", id:$rootScope.userdata.login}, function(repos) {
-				$rootScope.repositories=repos;
-			});
 		}, function(error) {
 			$rootScope.user = "";
 			$rootScope.authenticated = false;
 		});
 	}
-	if ($routeParams.username!=null && $routeParams.repo!=null) {
-		$rootScope.username = $routeParams.username;
-		$rootScope.repo = $routeParams.repo;
-		$rootScope.action = "log";
-		if ($routeParams.action!=null) {
-			$rootScope.action = $routeParams.action;
-		}
+	$rootScope.owner = $routeParams.owner;
+	$rootScope.reponame = $routeParams.reponame;
 
-		var currentData = function() {
-			DataResource.get({datatype:"commits", id:$rootScope.username, file:$rootScope.repo}, function(data) {
-        			$rootScope.item  = data;
-        			$rootScope.current_shield_src = "/shield/" + $rootScope.username + "/" + $rootScope.repo + "?" + new Date().getTime();
-        	});
-		}
-		currentData();
-		if ($rootScope.action!="") {
-    		switch ($rootScope.action) {
-    			case "config":
-    				DataResource.get({datatype:$rootScope.action, id:$rootScope.username, file:$rootScope.repo}, function(data) {
-    					$scope.actiondata = data;
-    				});
-    				break;
-    			default:
-    				DataResource.query({datatype:$rootScope.action, id:$rootScope.username, file:$rootScope.repo}, function(data) {
-    					$rootScope.actiondata = data;
-    				});
-    				break;
-    		}
+        var tvaParts = $location.path().split("/");
+
+	$rootScope.action = tvaParts[tvaParts.length-1]; 
+
+	if ($rootScope.action!="") {
+    		DataResource.query({datatype:$rootScope.action, owner:$rootScope.owner, reponame:$rootScope.reponame}, function(data) {
+    			$rootScope.actiondata = data;
+    		});
     	}
-	}
 
 });
-DemoApp.config(['$routeProvider', function($routeProvider) {
+CodetallyApp.config(['$routeProvider', function($routeProvider) {
 	$routeProvider
-		.when('/:username/:repo/:action', {templateUrl: 'about.html', controller:'DemoCtrl'})
-		.when('/:username/:repo', {templateUrl: 'about.html', controller: 'DemoCtrl'})
-		.when('/help', {templateUrl: 'help.html', controller: 'DemoCtrl'})
-		.when('/privacy', {templateUrl: 'privacy.html', controller: 'DemoCtrl'})
-		.when('/', {templateUrl: 'home.html', controller: 'DemoCtrl'})
+		.when('/:owner/:reponame/webhooks/:webhookid/edit', {templateUrl: 'edit_webhook.html', controller:'MainCtrl'})
+		.when('/:owner/:reponame/webhooks/:webhookid/deliveries', {templateUrl: 'list_webhookdeliveries.html', controller:'MainCtrl'})
+		.when('/:owner/:reponame/webhooks/:webhookid', {templateUrl: 'edit_webhook.html', controller:'MainCtrl'})
+		.when('/:owner/:reponame/webhooks', {templateUrl: 'list_webhooks.html', controller:'MainCtrl'})
+
+		.when('/:owner/:reponame/history', {templateUrl: 'list_history.html', controller:'MainCtrl'})
+		.when('/:owner/:reponame/log', {templateUrl: 'list_log.html', controller:'MainCtrl'})
+
+		.when('/:owner/:reponame/charges/:chargeid', {templateUrl: 'edit_charge.html', controller:'MainCtrl'})
+		.when('/:owner/:reponame/charges', {templateUrl: 'list_charges.html', controller:'MainCtrl'})
+
+		.when('/:owner/repositories', {templateUrl: 'list_repositories.html', controller:'MainCtrl'})
+
+		.when('/:owner/:reponame/integrations', {templateUrl: 'list_integrations.html', controller:'MainCtrl'})
+
+		.when('/:owner/:reponame/notifications', {templateUrl: 'list_notifications.html', controller:'MainCtrl'})
+
+		.when('/:owner/:reponame/:action', {templateUrl: 'about.html', controller:'MainCtrl'})
+		.when('/:owner/:reponame', {templateUrl: 'view_repository.html', controller: 'MainCtrl'})
+
+		.when('/help', {templateUrl: 'help.html', controller: 'MainCtrl'})
+		.when('/privacy', {templateUrl: 'privacy.html', controller: 'MainCtrl'})
+		.when('/', {templateUrl: 'home.html', controller: 'MainCtrl'})
 	;
-}]);
-
-DemoApp.filter('rawHtml', ['$sce', function($sce){
-  return function(val) {
-	json = JSON.stringify(val, undefined, 2);
-	if (json===undefined)
-		return;
-	json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-	something = json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-        var cls = 'number';
-        if (/^"/.test(match)) {
-            if (/:$/.test(match)) {
-                cls = 'key';
-            } else {
-                cls = 'string';
-            }
-	} else if (/true|false/.test(match)) {
-            cls = 'boolean';
-        } else if (/null/.test(match)) {
-            cls = 'null';
-        }
-	return '<span class="' + cls + '">' + match + '</span>';
-    });
-
-    return $sce.trustAsHtml(something);
-  };
 }]);
